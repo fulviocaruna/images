@@ -1,4 +1,4 @@
-FROM cantos:latest
+FROM centos:latest
 
 # Install necessary packages
 RUN yum repolist > /dev/null && \
