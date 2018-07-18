@@ -12,5 +12,7 @@ echo "JVM_ARGS=${JVM_ARGS}"
 echo "jmeter args=$@"
 
 # Keep entrypoint simple: we must pass the standard JMeter arguments
-/opt/apache-jmeter-4.0/bin/jmeter $@
-echo "END Running Jmeter on `date`"
+# /opt/apache-jmeter-4.0/bin/jmeter $@
+# echo "END Running Jmeter on `date`"
+
+read -p "Press any key to continue... " -n1 -s
