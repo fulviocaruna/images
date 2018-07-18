@@ -29,11 +29,11 @@ RUN mkdir -p /jmeter/{tests,results}
 
 RUN mkdir -p /tmp/dependencies
 
-RUN curl -L --silent ${JMETER_DOWNLOAD_URL} > /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz
+RUN curl -L --silent http://mirrors.ocf.berkeley.edu/apache/jmeter/binaries/apache-jmeter-4.0.tgz > /tmp/dependencies/apache-jmeter-4.0.tgz
 
 RUN mkdir -p /opt  
 
-RUN tar -xvf /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  
+RUN tar -xvf /tmp/dependencies/apache-jmeter-4.0.tgz -C /opt  
 
 RUN rm -rf /tmp/dependencies
 
