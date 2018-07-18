@@ -47,5 +47,9 @@ RUN chmod +x /launch.sh
 
 WORKDIR ${JMETER_HOME}
 
-ENTRYPOINT ["/launch.sh"]
+# ENTRYPOINT ["/launch.sh"]
+
+ENTRYPOINT $JMETER_HOME/bin/jmeter-server \
+                        -Dserver.rmi.localport=50000 \
+                        -Dserver_port=1099
 
