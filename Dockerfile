@@ -33,7 +33,7 @@ RUN curl -L --silent ${JMETER_DOWNLOAD_URL} > /tmp/dependencies/apache-jmeter-${
 
 RUN mkdir -p /opt  
 
-RUN tar -xzf /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  
+RUN tar -xvf /tmp/dependencies/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  
 
 RUN rm -rf /tmp/dependencies
 
