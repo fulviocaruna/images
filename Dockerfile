@@ -1,4 +1,4 @@
-FROM rhel7
+FROM cantos:latest
 
 # Install necessary packages
 RUN yum repolist > /dev/null && \
