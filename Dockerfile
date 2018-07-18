@@ -41,6 +41,8 @@ ENV PATH $PATH:$JMETER_BIN
 
 COPY launch.sh /
 
+RUN chmod +x /launch.sh
+
 WORKDIR ${JMETER_HOME}
 
 ENTRYPOINT ["/launch.sh"]
