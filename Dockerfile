@@ -39,6 +39,8 @@ RUN rm -rf /tmp/dependencies
 
 ENV PATH $PATH:$JMETER_BIN
 
+COPY launch.sh /
+
 WORKDIR ${JMETER_HOME}
 
 ENTRYPOINT ["/launch.sh"]
