@@ -37,7 +37,7 @@ RUN tar -xvf /tmp/dependencies/apache-jmeter-4.0.tgz -C /opt
 
 RUN rm -rf /tmp/dependencies
 
-RUN ls -lsa /opt/apache-jmeter-4.0
+RUN ls -lsa /opt/apache-jmeter-4.0/bin
 
 ENV PATH $PATH:$JMETER_BIN
 
