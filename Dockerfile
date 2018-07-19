@@ -1,54 +1,28 @@
-FROM centos:latest
+FROM centos:latest  
+MAINTAINER fulviocaruna@libero.it
 
-ARG JMETER_VERSION="3.3"
+RUN yum install -y java wget mvn --setopt=tsflags=nodocs && yum -y clean all
 
-ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
-ENV JMETER_BIN  ${JMETER_HOME}/bin
-ENV MIRROR_HOST http://mirrors.ocf.berkeley.edu/apache/jmeter
-ENV JMETER_DOWNLOAD_URL ${MIRROR_HOST}/binaries/apache-jmeter-${JMETER_VERSION}.tgz
-ENV JMETER_PLUGINS_DOWNLOAD_URL http://repo1.maven.org/maven2/kg/apc
-ENV JMETER_PLUGINS_FOLDER ${JMETER_HOME}/lib/ext/
+LABEL io.k8s.description="Platform for building and running Java8 apps" \ 
+io.k8s.display-name="Java8" \ 
+io.openshift.expose-services="8080:http" \ 
+io.openshift.tags="builder,java8" \ 
+io.openshift.s2i.destination="/opt/app" \ 
+io.openshift.s2i.scripts-url=image:///usr/local/s2i
 
-# Install necessary packages
-RUN yum repolist > /dev/null && \
-     yum-config-manager --enable rhel-7-server-optional-rpms && \
-     yum clean all && \
-     INSTALL_PKGS="tar \
-        unzip \
-        wget \
-        which \
-        yum-utils \
-        java-1.8.0-openjdk-devel" && \
-     yum install -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
-     rpm -V $INSTALL_PKGS && \
-     yum clean all
+RUN adduser --system -u 10001 javauser    
+RUN mkdir -p /opt/app  && chown -R javauser: /opt/app
 
-# Create jmeter directory with tests and results folder
-RUN mkdir -p /jmeter/{tests,results}
+COPY ./S2iScripts/ /usr/local/s2i
 
-RUN mkdir -p /tmp/dependencies
+USER 10001EXPOSE 8080
 
-RUN curl -L --silent http://mirrors.ocf.berkeley.edu/apache/jmeter/binaries/apache-jmeter-4.0.tgz > /tmp/dependencies/apache-jmeter-4.0.tgz
+CMD ["/usr/local/s2i/usage"]
 
-RUN mkdir -p /opt  
 
-RUN tar -xvf /tmp/dependencies/apache-jmeter-4.0.tgz -C /opt  
 
-RUN rm -rf /tmp/dependencies
 
-RUN ls -lsa /opt/apache-jmeter-4.0/bin
 
-ENV PATH $PATH:$JMETER_BIN
-
-COPY launch.sh /
-
-RUN chmod +x /launch.sh
-
-WORKDIR ${JMETER_HOME}
-
-EXPOSE 1099 50000
-
-ENTRYPOINT ["/launch.sh"]
 
 
 

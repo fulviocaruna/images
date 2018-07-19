@@ -1,0 +1,1 @@
+#!/bin/bash -eecho "run"java ${JAVA_OPTS} -jar /opt/app/openshift-app.jar
