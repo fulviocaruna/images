@@ -1,6 +1,5 @@
 FROM centos:latest
 
-
 ARG JMETER_VERSION="3.3"
 
 ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
@@ -48,6 +47,8 @@ RUN chmod +x /launch.sh
 WORKDIR ${JMETER_HOME}
 
 # ENTRYPOINT ["/launch.sh"]
+
+EXPOSE 1099 50000
 
 ENTRYPOINT $JMETER_HOME/bin/jmeter-server \
                         -Dserver.rmi.localport=50000 \
