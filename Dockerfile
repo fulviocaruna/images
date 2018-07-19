@@ -46,11 +46,10 @@ RUN chmod +x /launch.sh
 
 WORKDIR ${JMETER_HOME}
 
-# ENTRYPOINT ["/launch.sh"]
-
 EXPOSE 1099 50000
 
-ENTRYPOINT /opt/apache-jmeter-4.0/bin/jmeter-server \
-                        -Dserver.rmi.localport=50000 \
-                        -Dserver_port=1099
+ENTRYPOINT ["/launch.sh"]
+
+
+
 
