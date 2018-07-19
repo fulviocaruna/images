@@ -50,7 +50,7 @@ WORKDIR ${JMETER_HOME}
 
 EXPOSE 1099 50000
 
-ENTRYPOINT $JMETER_HOME/bin/jmeter-server \
+ENTRYPOINT /opt/apache-jmeter-4.0/bin/jmeter-server \
                         -Dserver.rmi.localport=50000 \
                         -Dserver_port=1099
 
