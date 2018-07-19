@@ -15,7 +15,7 @@ RUN mkdir -p /opt/app  && chown -R javauser: /opt/app
 
 RUN mkdir -p /usr/local/s2i
 
-COPY ./S2iScripts/* /usr/local/s2i
+COPY ./S2iScripts/* /usr/local/s2i/
 
 RUN chown -R javauser: /usr/local/s2i
 
